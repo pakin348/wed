@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        color: #3a2e2e;
+        background: #fdfaf6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ─── Hero ─── */
+      .hero {
+        width: 100%;
+        padding: 60px 24px 36px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(to bottom, #fdf6ee, #fdfaf6);
+      }
+
+      .deco-line {
+        width: 60px;
+        height: 1px;
+        background: #c9a98a;
+      }
+
+      .deco-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 12px;
+      }
+
+      .deco-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c9a98a;
+      }
+
+      .deco-text {
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: #c9a98a;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+
+      .couple-names {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 8vw, 60px);
+        font-weight: 400;
+        color: #3a2e2e;
+        line-height: 1.2;
+        margin-bottom: 12px;
+      }
+
+      .couple-names .name {
+        font-style: italic;
+        color: #b07a5a;
+      }
+
+      .couple-names .ampersand {
+        display: block;
+        font-size: 0.45em;
+        color: #c9a98a;
+        font-style: normal;
+        letter-spacing: 4px;
+        font-weight: 300;
+        margin: 2px 0;
+      }
+
+      .date-text {
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: #9c8070;
+        font-weight: 300;
+      }
+
+      /* ─── Video Section ─── */
+      .video-section {
+        width: 100%;
+        max-width: 860px;
+        padding: 32px 24px 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .video-label {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 17px;
+        color: #9c8070;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .video-wrapper {
+        width: 100%;
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 8px 40px rgba(100, 60, 30, 0.12);
+        background: #1a1209;
+      }
+
+      .video-wrapper::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%; /* 16:9 */
+      }
+
+      .video-wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+      }
+
+      /* Upload zone */
+      .upload-zone {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        gap: 10px;
+        transition: background 0.2s;
+      }
+
+      .upload-zone:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .upload-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(201, 169, 138, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .upload-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: #c9a98a;
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .upload-text-main {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        color: #c9a98a;
+        font-size: 16px;
+      }
+
+      .upload-text-sub {
+        font-size: 11px;
+        color: rgba(201, 169, 138, 0.55);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      /* Hide upload zone when video is loaded */
+      .has-video .upload-zone {
+        display: none;
+      }
+      .has-video video {
+        display: block;
+      }
+
+      /* ─── Caption ─── */
+      .ornament {
+        font-family: "Playfair Display", serif;
+        color: #c9a98a;
+        font-size: 22px;
+        margin: 24px 0 14px;
+        opacity: 0.65;
+      }
+
+      .caption {
+        max-width: 520px;
+        text-align: center;
+        font-size: 14px;
+        color: #9c8070;
+        line-height: 1.9;
+        font-weight: 300;
+      }
+
+      /* ─── Footer ─── */
+      footer {
+        margin-top: auto;
+        padding: 32px 16px 44px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-line {
+        width: 32px;
+        height: 1px;
+        background: #c9a98a;
+        opacity: 0.5;
+      }
+
+      .footer-names {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 15px;
+        color: #b07a5a;
+      }
+
+      .footer-date {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: #c9a98a;
+        font-weight: 300;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="deco-row">
+        <div class="deco-line"></div>
+        <div class="deco-dot"></div>
+        <span class="deco-text">The Wedding of</span>
+        <div class="deco-dot"></div>
+        <div class="deco-line"></div>
+      </div>
+
+      <h1 class="couple-names">
+        <span class="name">ชื่อเจ้าบ่าว</span>
+        <span class="ampersand">&amp;</span>
+        <span class="name">ชื่อเจ้าสาว</span>
+      </h1>
+
+      <p class="date-text">วันที่ &nbsp;·&nbsp; สถานที่</p>
+    </section>
+
+    <!-- ── Video ── -->
+    <section class="video-section">
+      <p class="video-label">ย้อนรอยวันพิเศษของเรา</p>
+
+      <div class="video-wrapper" id="videoWrapper">
+        <video id="mainVideo" controls></video>
+
+        <label class="upload-zone" for="videoInput" id="uploadZone">
+          <div class="upload-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="16 16 12 12 8 16"></polyline>
+              <line x1="12" y1="12" x2="12" y2="21"></line>
+              <path
+                d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"
+              ></path>
+            </svg>
+          </div>
+          <span class="upload-text-main">วางวิดีโองานแต่งที่นี่</span>
+          <span class="upload-text-sub">คลิกเพื่อเลือกไฟล์ .mp4</span>
+        </label>
+
+        <input type="file" id="videoInput" accept="video/*" />
+      </div>
+
+      <div class="ornament">✦</div>
+
+      <p class="caption">
+        ขอบคุณทุกท่านที่มาร่วมเป็นส่วนหนึ่ง<br />
+        ในวันที่งดงามที่สุดของเรา
+      </p>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <div class="footer-line"></div>
+      <p class="footer-names">ประวิทย์ &amp; ปภาดา</p>
+      <div class="footer-line"></div>
+      <p class="footer-date">วันที่ &nbsp;·&nbsp; สถานที่</p>
+    </footer>
+
+    <script>
+      const input = document.getElementById("videoInput");
+      const video = document.getElementById("mainVideo");
+      const wrapper = document.getElementById("videoWrapper");
+
+      input.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        video.src = URL.createObjectURL(file);
+        wrapper.classList.add("has-video");
+        video.play();
+      });
+    </script>
+  </body>
+</html>
