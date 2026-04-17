@@ -130,80 +130,13 @@
         padding-top: 56.25%; /* 16:9 */
       }
 
-      .video-wrapper video {
+      .video-wrapper iframe {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        display: none;
-      }
-
-      /* Upload zone */
-      .upload-zone {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        gap: 10px;
-        transition: background 0.2s;
-      }
-
-      .upload-zone:hover {
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      .upload-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(201, 169, 138, 0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .upload-icon svg {
-        width: 22px;
-        height: 22px;
-        stroke: #c9a98a;
-        fill: none;
-        stroke-width: 1.5;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .upload-text-main {
-        font-family: "Playfair Display", serif;
-        font-style: italic;
-        color: #c9a98a;
-        font-size: 16px;
-      }
-
-      .upload-text-sub {
-        font-size: 11px;
-        color: rgba(201, 169, 138, 0.55);
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-      }
-
-      input[type="file"] {
-        display: none;
-      }
-
-      /* Hide upload zone when video is loaded */
-      .has-video .upload-zone {
-        display: none;
-      }
-      .has-video video {
-        display: block;
+        border: none;
       }
 
       /* ─── Caption ─── */
@@ -268,36 +201,25 @@
       </div>
 
       <h1 class="couple-names">
-        <span class="name">ชื่อเจ้าบ่าว</span>
+        <span class="name">ประวิทย์</span>
         <span class="ampersand">&amp;</span>
-        <span class="name">ชื่อเจ้าสาว</span>
+        <span class="name">ปภาดา</span>
       </h1>
 
-      <p class="date-text">วันที่ &nbsp;·&nbsp; สถานที่</p>
+      <p class="date-text">18 เมษายน 2569</p>
     </section>
 
     <!-- ── Video ── -->
     <section class="video-section">
       <p class="video-label">ย้อนรอยวันพิเศษของเรา</p>
 
-      <div class="video-wrapper" id="videoWrapper">
-        <video id="mainVideo" controls></video>
-
-        <label class="upload-zone" for="videoInput" id="uploadZone">
-          <div class="upload-icon">
-            <svg viewBox="0 0 24 24">
-              <polyline points="16 16 12 12 8 16"></polyline>
-              <line x1="12" y1="12" x2="12" y2="21"></line>
-              <path
-                d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"
-              ></path>
-            </svg>
-          </div>
-          <span class="upload-text-main">วางวิดีโองานแต่งที่นี่</span>
-          <span class="upload-text-sub">คลิกเพื่อเลือกไฟล์ .mp4</span>
-        </label>
-
-        <input type="file" id="videoInput" accept="video/*" />
+      <div class="video-wrapper">
+        <iframe
+          src="https://drive.google.com/file/d/1r1be--YD_l0ejYAeSd9ojg-UO17g-XL9/preview"
+          allow="autoplay"
+          allowfullscreen
+        >
+        </iframe>
       </div>
 
       <div class="ornament">✦</div>
@@ -313,21 +235,7 @@
       <div class="footer-line"></div>
       <p class="footer-names">ประวิทย์ &amp; ปภาดา</p>
       <div class="footer-line"></div>
-      <p class="footer-date">วันที่ &nbsp;·&nbsp; สถานที่</p>
+      <p class="footer-date">18 เมษายน 2569</p>
     </footer>
-
-    <script>
-      const input = document.getElementById("videoInput");
-      const video = document.getElementById("mainVideo");
-      const wrapper = document.getElementById("videoWrapper");
-
-      input.addEventListener("change", function (e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        video.src = URL.createObjectURL(file);
-        wrapper.classList.add("has-video");
-        video.play();
-      });
-    </script>
   </body>
 </html>
